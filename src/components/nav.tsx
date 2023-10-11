@@ -48,16 +48,19 @@ export default function Nav() {
 							<BiUser size={15} className="text-white" />
 						</div>
 						<div className="relative">
-							<div className="h-10 w-10 rounded-full bg-neutral-800 flex items-center justify-center hover:cursor-pointer">
+							<Link
+								onClick={() => {
+									nprogress.start();
+								}}
+								href={"/checkout"}
+								className="h-10 w-10 rounded-full bg-neutral-800 flex items-center justify-center hover:cursor-pointer">
 								<BsCart size={15} className="text-white" />
 								{cart.length > 0 && (
-									<Link onClick={()=>{
-                              nprogress.start()
-                           }} href={"/checkout"} className="absolute  -top-[5px] left-[27px] bg-purple-500 text-white rounded-full  min-w-[22px] min-h-[12px] p-[4px]  flex items-center justify-center text-xs">
+									<div className="absolute  -top-[5px] left-[27px] bg-purple-500 text-white rounded-full  min-w-[22px] min-h-[12px] p-[4px]  flex items-center justify-center text-xs">
 										{cart.reduce((acc: any, curr: any) => acc + curr.quantity, 0)}
-									</Link>
-                        )}
-							</div>
+									</div>
+								)}
+							</Link>
 						</div>
 					</div>
 				</div>

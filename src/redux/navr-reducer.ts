@@ -40,9 +40,7 @@ export const checkoutSlice = createSlice({
 		updateQuantity: (state, action: PayloadAction<any>) => {
 			const index = state.findIndex((item) => item.id === action.payload.id);
 			if (index >= 0) {
-				state[index].quantity = action.payload.quantity;
-            console.log(state);
-            
+				state[index].quantity = action.payload.quantity; 
 				localStorage.setItem("checkout", JSON.stringify(state));
 			}
 		},
