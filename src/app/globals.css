@@ -2,26 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	overflow: hidden;
+	touch-action: manipulation;
+}
+.hide-scrollbar {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE 11 */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+	width: 0 !important;
+	height: 0 !important;
+	display: none; /* Safari and Chrome */
+}
+
+#nprogress .bar {
+	background: #a855f7 !important;
+	height: 3px !important;
+}
+
+.next-loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 3px;
+	background-color: #0070f3; /* Customize the color */
+	z-index: 1000;
+	transition: width 0.2s ease-out;
+}
+
+.billboard-scroll {
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none; /* Firefox */
+	scrollbar-height: none; /* Firefox */
+	-ms-overflow-style: none;
+}
+
+.billboard-scroll::-webkit-scrollbar {
+	display: none;
+	scrollbar-width: none; /* Firefox */
+	scrollbar-height: none; /* Firefox */
+	-ms-overflow-style: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	appearance: none;
+	-webkit-appearance: none;
+	margin: 0; /* Optional: You can adjust the margin as needed */
+}
+
+/* For Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.billboard-item {
+	scroll-snap-align: start;
+}
+
+.scroll-enable::-webkit-scrollbar {
+	display: block;
+}
+
+.scroll-disable::-webkit-scrollbar {
+	display: none;
+}
+
+.disable-scroll {
+	overflow-x: hidden;
+	touch-action: none;
 }
