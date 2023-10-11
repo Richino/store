@@ -29,6 +29,7 @@ const billboard = [
 
 export default function Home() {
 	const [current, setCurrent] = useState(0);
+	const [touchEnabled, setTouchEnabled] = useState(true);
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const update = (page: number) => {
 		const element = document.getElementById(`billboard-${page}`);
@@ -65,7 +66,7 @@ export default function Home() {
 			<div className="relative w-full flex justify-center">
 				<div
 					ref={containerRef}
-					className="overflow-hidden overscroll-none overflow-x-auto sm:aspect-video  aspect-[4/5]  billboard-scroll snap-x snap-mandatory  flex  bg-neutral-950 sm:w-[1000px] w-full">
+					className="overflow-hidden overscroll-none sm:overscroll-auto overflow-x-auto sm:aspect-video  aspect-[4/5]  billboard-scroll snap-x snap-mandatory  flex  bg-neutral-950 sm:w-[1000px] w-full">
 					{billboard.map((billboard, index) => (
 						<Billboard key={index} billboard={billboard} index={index} />
 					))}
