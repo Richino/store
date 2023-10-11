@@ -8,7 +8,6 @@ import Link from "next/link";
 import nprogress from "nprogress";
 import React from "react";
 
-
 interface Params {
 	params: {
 		id: string;
@@ -29,9 +28,19 @@ export default function Page({ params }: Params) {
 		return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount);
 	};
 
-	const handleAddToCart = (id: string) => {
-		let newID = parseInt(id);
+	const addToCart = () => {
+		nprogress.start();
+		const cartItems = localStorage.getItem("checkout") ? JSON.parse(localStorage.getItem("checkout") as string) : [];
+		const index = cartItems.findIndex((item: any) => item.id === parseInt(params.id));
+		if (index !== -1) {
+			cartItems[index].quantity += 1;
+			localStorage.setItem("checkout", JSON.stringify(cartItems));
+		} else {
+			localStorage.setItem("checkout", JSON.stringify([...cartItems, { id: parseInt(params.id), quantity: 1 }]));
+		}
+		let newID = parseInt(params.id);
 		dispatch(addToCheckout(newID));
+		setIsButtonDisabled(true);
 	};
 
 	React.useEffect(() => {
@@ -90,19 +99,7 @@ export default function Page({ params }: Params) {
 								className={`bg-purple-600  text-white py-6 text-base sm:py-3 px-6 rounded-lg mt-5 sm:transition sm:duration-300 ease-in-out sm:transform ${
 									!isButtonDisabled ? "sm:hover:scale-105 sm:hover:bg-purple-700" : "sm:hover:cursor-not-allowed"
 								} w-full sm:w-auto`}
-								onClick={() => {
-									nprogress.start();
-									const cartItems = localStorage.getItem("checkout") ? JSON.parse(localStorage.getItem("checkout") as string) : [];
-									const index = cartItems.findIndex((item: any) => item.id === parseInt(params.id));
-									if (index !== -1) {
-										cartItems[index].quantity += 1;
-										localStorage.setItem("checkout", JSON.stringify(cartItems));
-									} else {
-										localStorage.setItem("checkout", JSON.stringify([...cartItems, { id: parseInt(params.id), quantity: 1 }]));
-									}
-									handleAddToCart(params.id);
-									setIsButtonDisabled(true);
-								}}>
+								onClick={addToCart}>
 								{isButtonDisabled ? "Adding to cart..." : "Add to cart"}
 							</button>
 						</Link>
