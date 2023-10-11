@@ -29,7 +29,6 @@ const billboard = [
 
 export default function Home() {
 	const [current, setCurrent] = useState(0);
-	const [touchEnabled, setTouchEnabled] = useState(true);
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const update = (page: number) => {
 		const element = document.getElementById(`billboard-${page}`);

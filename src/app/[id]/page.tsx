@@ -8,6 +8,7 @@ import Link from "next/link";
 import nprogress from "nprogress";
 import React from "react";
 
+
 interface Params {
 	params: {
 		id: string;
@@ -15,8 +16,9 @@ interface Params {
 }
 
 export default function Page({ params }: Params) {
-	const [game, setGame] = useState(games.find((game) => game.id === parseInt(params.id)));
+	const [game] = useState(games.find((game) => game.id === parseInt(params.id)));
 	const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
 	const dispatch = useDispatch();
 	nprogress.configure({
 		showSpinner: false,
@@ -53,7 +55,7 @@ export default function Page({ params }: Params) {
 				<div className="flex flex-col md:flex-row justify-center items-center space-y-5 md:space-x-12">
 					<div className="w-full">
 						<div className="h-[444px] sm:w-[300px] relative sm:rounded-lg overflow-hidden overscroll-none shadow-md aspect-[4/5] w-full">
-							<Image alt="Product" src={game?.image as string} fill style={{ objectFit: "cover" }} sizes="(max-width: 300px) 50vw, 100vw" priority quality={50}  />
+							<Image alt="Product" src={game?.image as string} fill style={{ objectFit: "cover" }} sizes="(max-width: 300px) 50vw, 100vw" priority quality={50} />
 						</div>
 					</div>
 					<div className="px-3 pb-3">
