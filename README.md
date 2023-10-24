@@ -1,4 +1,4 @@
-# Gaming Keys & Accessories
+# Gaming Keys
 
 ![Project Image](./screenshot.png)
 
