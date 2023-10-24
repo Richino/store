@@ -1,6 +1,6 @@
 # Gaming Keys & Accessories
 
-![Project Image](your_image_url_here)
+![Project Image](./screenshot.png)
 
 ## Introduction
 
